@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiLi影子跟读Pro - 功能说明</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --dark: #1d3557;
+            --light: #f1faee;
+            --success: #2ec4b6;
+            --warning: #ff9f1c;
+            --danger: #e63946;
+            --text: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3 {
+            color: var(--secondary);
+            margin: 20px 0 10px 0;
+            font-size: 1.3rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li i {
+            color: var(--success);
+            width: 25px;
+            font-size: 1.2rem;
+        }
+
+        .feature-list .icon-name {
+            font-weight: 500;
+            color: var(--primary);
+            min-width: 120px;
+        }
+
+        .feature-list .icon-desc {
+            color: var(--text);
+            flex: 1;
+        }
+
+        .word-demo {
+            background: var(--dark);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .word-demo .word {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .word-demo .word:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .word-demo .word.clicked {
+            background: var(--danger);
+            animation: wordClick 0.5s ease;
+        }
+
+        @keyframes wordClick {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .highlight-box h3 {
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: white;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+
+            .feature-list li {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .feature-list .icon-name {
+                min-width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-play-circle"></i> LiLi影子跟读Pro</h1>
+            <p>功能说明 - 图标作用与单词点击功能</p>
+        </div>
+
+        <div class="highlight-box">
+            <h3><i class="fas fa-star"></i> 核心功能</h3>
+            <p>智能字幕同步、单词点击释义、语音朗读、循环练习、循环计数</p>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-video"></i> 播放控制图标</h2>
+            <ul class="feature-list">
+                <li>
+                    <i class="fas fa-play"></i>
+                    <span class="icon-name">播放/暂停</span>
+                    <span class="icon-desc">点击开始播放视频，再次点击暂停播放</span>
+                </li>
+                <li>
+                    <i class="fas fa-step-backward"></i>
+                    <span class="icon-name">上一句</span>
+                    <span class="icon-desc">跳转到上一句字幕的时间点</span>
+                </li>
+                <li>
+                    <i class="fas fa-step-forward"></i>
+                    <span class="icon-name">下一句</span>
+                    <span class="icon-desc">跳转到下一句字幕的时间点</span>
+                </li>
+                <li>
+                    <i class="fas fa-redo"></i>
+                    <span class="icon-name">循环播放</span>
+                    <span class="icon-desc">开启/关闭循环播放模式，重复练习当前片段</span>
+                </li>
+                <li>
+                    <i class="fas fa-sort-numeric-up"></i>
+                    <span class="icon-name">循环计数</span>
+                    <span class="icon-desc">显示当前句子的循环播放次数，帮助跟踪练习进度</span>
+                </li>
+                <li>
+                    <i class="fas fa-closed-captioning"></i>
+                    <span class="icon-name">字幕模式</span>
+                    <span class="icon-desc">切换字幕显示模式（中英/仅英/仅中/隐藏）</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-sort-numeric-up"></i> 循环计数功能</h2>
+            <p style="margin-bottom: 20px; color: var(--secondary); font-weight: 500;">
+                智能跟踪每次循环练习的次数，帮助您更好地掌握学习进度
+            </p>
+            
+            <h3>循环计数功能特点：</h3>
+            <ul class="feature-list">
+                <li>
+                    <i class="fas fa-redo"></i>
+                    <span class="icon-name">自动计数</span>
+                    <span class="icon-desc">每次循环播放时自动增加计数，实时显示练习次数</span>
+                </li>
+                <li>
+                    <i class="fas fa-chart-line"></i>
+                    <span class="icon-name">进度跟踪</span>
+                    <span class="icon-desc">通过循环次数了解自己对当前句子的掌握程度</span>
+                </li>
+                <li>
+                    <i class="fas fa-sync-alt"></i>
+                    <span class="icon-name">智能重置</span>
+                    <span class="icon-desc">切换到新句子时自动重置计数，开始新的练习</span>
+                </li>
+                <li>
+                    <i class="fas fa-eye"></i>
+                    <span class="icon-name">可视化显示</span>
+                    <span class="icon-desc">大字体显示循环次数，清晰易读，便于快速查看</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-tachometer-alt"></i> 速度控制图标</h2>
+            <ul class="feature-list">
+                <li>
+                    <i class="fas fa-minus"></i>
+                    <span class="icon-name">减速</span>
+                    <span class="icon-desc">降低播放速度，便于跟读练习</span>
+                </li>
+                <li>
+                    <i class="fas fa-plus"></i>
+                    <span class="icon-name">加速</span>
+                    <span class="icon-desc">提高播放速度，快速浏览内容</span>
+                </li>
+                <li>
+                    <i class="fas fa-sync-alt"></i>
+                    <span class="icon-name">重置速度</span>
+                    <span class="icon-desc">将播放速度重置为1.0x正常速度</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-language"></i> 单词点击功能</h2>
+            <p style="margin-bottom: 20px; color: var(--secondary); font-weight: 500;">
+                点击任何英文单词即可查看详细释义和发音
+            </p>
+            
+            <div class="word-demo">
+                <p style="margin-bottom: 15px; color: #4cc9f0;">点击下面的单词体验功能：</p>
+                <span class="word" data-word="hello">Hello</span>
+                <span class="word" data-word="world">world</span>
+                <span class="word" data-word="this">this</span>
+                <span class="word" data-word="is">is</span>
+                <span class="word" data-word="amazing">amazing</span>
+                <span class="word" data-word="tool">tool</span>
+            </div>
+
+            <h3>单词点击功能特点：</h3>
+            <ul class="feature-list">
+                <li>
+                    <i class="fas fa-mouse-pointer"></i>
+                    <span class="icon-name">智能识别</span>
+                    <span class="icon-desc">自动识别英文单词，支持连字符和缩写</span>
+                </li>
+                <li>
+                    <i class="fas fa-book"></i>
+                    <span class="icon-name">详细释义</span>
+                    <span class="icon-desc">显示中文释义、音标、词性、例句等信息</span>
+                </li>
+                <li>
+                    <i class="fas fa-volume-up"></i>
+                    <span class="icon-name">语音朗读</span>
+                    <span class="icon-desc">美式英语发音，清晰准确，可调节朗读速度</span>
+                </li>
+                <li>
+                    <i class="fas fa-database"></i>
+                    <span class="icon-name">丰富词库</span>
+                    <span class="icon-desc">包含大量英语词汇，覆盖常用单词和短语</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2><i class="fas fa-upload"></i> 文件上传图标</h2>
+            <ul class="feature-list">
+                <li>
+                    <i class="fas fa-video"></i>
+                    <span class="icon-name">上传视频</span>
+                    <span class="icon-desc">选择英语学习视频文件（支持MP4、AVI、MOV等格式）</span>
+                </li>
+                <li>
+                    <i class="fas fa-file-alt"></i>
+                    <span class="icon-name">上传字幕</span>
+                    <span class="icon-desc">选择对应的SRT字幕文件，系统自动同步中英文字幕</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="highlight-box">
+            <h3><i class="fas fa-rocket"></i> 开始使用</h3>
+            <p>现在你了解了所有功能，开始你的英语学习之旅吧！</p>
+            <a href="index.html" class="btn">
+                <i class="fas fa-play"></i> 立即开始
+            </a>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 LiLi影子跟读Pro - 让英语学习更简单、更高效</p>
+        </div>
+    </div>
+
+    <script>
+        // 单词点击演示
+        document.addEventListener('DOMContentLoaded', function() {
+            const words = document.querySelectorAll('.word-demo .word');
+            words.forEach(word => {
+                word.addEventListener('click', function() {
+                    this.classList.add('clicked');
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 500);
+                    
+                    // 显示提示信息
+                    const wordText = this.textContent;
+                    alert(`点击了单词: ${wordText}\n\n在实际应用中，这里会显示：\n• 中文释义\n• 音标\n• 词性\n• 例句\n• 发音按钮`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
